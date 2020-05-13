@@ -48,12 +48,12 @@ Rigidbody:
   m_GameObject: {fileID: 3262758351938370256}
   serializedVersion: 2
   m_Mass: 0.1
-  m_Drag: 0
+  m_Drag: 0.3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!82 &3920068434309454832
 AudioSource:
@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af098473098e48fcb49891013c3042d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rcsThrust: 65
+  mainThrust: 100
 --- !u!1 &3262758352390459525
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3262758352390459525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3997759, y: 7.3686905, z: -13.77941}
+  m_LocalPosition: {x: -0.4, y: 7.59, z: -13.78}
   m_LocalScale: {x: 0.076437846, y: 1.3838881, z: 0.076437846}
   m_Children: []
   m_Father: {fileID: 3262758351938370263}
@@ -284,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3262758352541984696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3997759, y: 7.46869, z: -14.129407}
+  m_LocalPosition: {x: -0.4, y: 7.61, z: -14.13}
   m_LocalScale: {x: 0.8762021, y: 0.980032, z: 0.8762021}
   m_Children: []
   m_Father: {fileID: 3262758351938370263}
@@ -377,7 +379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3262758352628016086}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3997759, y: 7.89869, z: -13.799407}
+  m_LocalPosition: {x: -0.4, y: 7.95, z: -13.8}
   m_LocalScale: {x: 0.9424991, y: 0.5328842, z: 0.91018176}
   m_Children: []
   m_Father: {fileID: 3262758351938370263}
