@@ -26,6 +26,8 @@ public class Rocket : MonoBehaviour
     enum State { Alive ,  Dying ,  Transcending }
     State state = State.Alive;
 
+    bool collisionsEnabled = true;
+
     // Start is called before the first frame update
     void Start() {
         rigidBody = GetComponent<Rigidbody>();
@@ -41,12 +43,29 @@ public class Rocket : MonoBehaviour
             Thrust();
             Rotate();
         }
+
+        // todo only if debug on
+        if (Debug.isDebugBuild)
+        {
+            RespondToDebugKeys();
+        }
+    }
+
+    private void RespondToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionsEnabled = !collisionsEnabled;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-
-        if (state != State.Alive) { return; }
+        if (state != State.Alive || collisionsEnabled == false) { return; }
 
         switch (collision.gameObject.tag)
         {
@@ -76,14 +95,20 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene(1);
+        int currenntSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currenntSceneIndex + 1;
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(0);
+        }
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private void Rotate()
     {
-        rigidBody.freezeRotation = true;
-        float rotationSpeed = rcsThrust * Time.deltaTime;
+        rigidBody.angularVelocity = Vector3.zero; //remove rotation due to physics
 
+        float rotationSpeed = rcsThrust * Time.deltaTime;
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward * rotationSpeed);
@@ -92,8 +117,6 @@ public class Rocket : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * rotationSpeed);
         }
-
-        rigidBody.freezeRotation = false;
     }
 
     private void Thrust()
